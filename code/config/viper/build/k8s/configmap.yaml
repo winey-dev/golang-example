@@ -1,0 +1,11 @@
+## ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: server-config
+data:
+  conf.yaml: |
+    server:
+      logLevel: debug
+      address: localhost
+      port: 8080

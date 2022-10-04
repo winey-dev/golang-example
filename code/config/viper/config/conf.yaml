@@ -1,0 +1,4 @@
+server:
+  logLevel: debug
+  address: localhost
+  port: 8081

@@ -1,0 +1,4 @@
+server:
+    logLevel: info
+    address: localhost
+    port: 8080

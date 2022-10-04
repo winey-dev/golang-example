@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: viper-sample
+  labels:
+    app: viper-sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: viper-sample
+  template:
+    metadata:
+      labels:
+        app: viper-sample
+    spec:
+      containers:
+      - name: viper-sample
+        image:  ${REPO}/smlee/viper:0.0.1
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: server-config
