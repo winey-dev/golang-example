@@ -13,7 +13,7 @@ type Person struct {
 	SecondName string `gorm:"column:second_name"`
 }
 
-~/go/pkg/mod/gorm.io/mod/model.go 
+// ~/go/pkg/mod/gorm.io/mod/model.go 
 package gorm
 
 import "time"
