@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"html/data"
+	"default/data"
 )
 
 func main() {
