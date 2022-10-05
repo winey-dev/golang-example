@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package v2.user;
+
+option go_package = "github.com/yiaw/grpc-example/protos/v2/user";
+
+import "google/api/annotations.proto";
+
+service User {
+    rpc SetUser(UserProto) returns (ResponseData) {
+        option(google.api.http) = {
+            post: "/v2/users" 
+            body: "*"
+        };
+    };
+    rpc GetUser(UserId) returns (UserProto) {
+        option(google.api.http) = {
+            get: "/v2/users/{user_id}" 
+        };
+    };
+    rpc ListUsers(None) returns (ListUsersResponse) {
+        option(google.api.http) = {
+            get: "/v2/users"
+        };
+    };
+
+    rpc UpdateUser(UserProto) returns (ResponseData) {
+        option(google.api.http) = {
+            patch: "/v2/users/{user_id}"
+            body: "*"
+        };
+    };
+    rpc DeleteUser(UserId) returns (ResponseData) {
+        option(google.api.http) = {
+            delete: "/v2/users/{user_id}"
+        };
+    };
+}
+
+message UserProto {
+    string user_id = 1;
+    string password= 2;
+    string labelkey = 3;
+    string labelvalue = 4;
+    string password_expiretime = 5;
+    int32  maxuser = 6;
+    bool   locallogin = 7;
+}
+
+message None{}
+
+message UserId {
+    string user_id = 1;
+}
+
+message ResponseData {
+    string response_message =1;
+}
+
+message ListUsersResponse {
+    repeated UserProto users = 1;
+}

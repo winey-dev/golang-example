@@ -1,0 +1,6 @@
+cmd/cmd
+cmd/grpc-server
+cmd/grpc-server.exe
+build
+.key
+tools/chat-client/chat-client

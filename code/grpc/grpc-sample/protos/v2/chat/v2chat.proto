@@ -1,0 +1,32 @@
+syntax = "proto3";
+package v2.chat;
+
+option go_package = "github.com/yiaw/grpc-example/protos/v2/chat";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+
+service ChatService {
+    rpc SendMessage(Message) returns (google.protobuf.Empty) {
+      option(google.api.http) = { 
+        put: "/v2/chat"
+        body: "*"
+      };
+    };
+    rpc RegistRouterChannel(stream Message) returns (stream Message) {
+      option(google.api.http) = {
+        post: "/v2/chat" 
+        body: "*"
+      };
+    };
+
+}
+message User {
+    string user = 1;
+}
+
+message Message {
+    string user = 1;
+    string msg = 2;
+}

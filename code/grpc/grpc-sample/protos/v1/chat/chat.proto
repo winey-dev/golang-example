@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package v1.chat;
+option go_package = "github.com/yiaw/grpc-example/protos/v1/chat";
+
+import "google/protobuf/empty.proto";
+
+service ChatService {
+    rpc SendMessage(Message) returns (google.protobuf.Empty);
+    rpc RegistRouterChannel(stream Message) returns (stream Message);
+
+}
+message User {
+    string user = 1;
+}
+
+message Message {
+    string user = 1;
+    string msg = 2;
+}
+
+message AnyMessage {
+    string  user = 1;
+    int32 msgType = 2;
+}
