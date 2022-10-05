@@ -15,7 +15,7 @@ Golang에는 다양한 OpenSource 들이 존재 한다.
 ### gorm
 ### ent
 
-## HTTP
+## WEB FRAMWORK
 ### gin
 Server Side Randering 으로  Go Web Framwork다.
 간단한 Front를 만들어 불수 있다.
