@@ -15,7 +15,7 @@ Golang OpenSource 사용법 및 Solution API 연동 및 사용 법 Code
 ### ORM
 - gorm.io/gorm
 - entgo.io/ent
-### HTTP
+### WEBFRAMWORK
 - github.com/gin-gonic/gin
 ### GRPC
 - google.golang.org/grpc 
