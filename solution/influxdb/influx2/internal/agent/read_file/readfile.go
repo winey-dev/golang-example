@@ -93,10 +93,10 @@ func ReadFromFile(path string) ([]string, error) {
 		}
 
 		if anno {
-			if temp != "*/" {
-				continue
+			if temp == "*/" {
+				anno = false
 			}
-			anno = false
+			continue
 		}
 
 		if temp == "/*" {
@@ -105,7 +105,9 @@ func ReadFromFile(path string) ([]string, error) {
 		}
 
 		if strings.Contains(temp, "---") {
-			queryLine = append(queryLine, str)
+			if str != "" {
+				queryLine = append(queryLine, str)
+			}
 			str = ""
 			continue
 		}
