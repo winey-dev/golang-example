@@ -8,6 +8,7 @@ type Arguments struct {
 	Write     bool
 	W_field   bool
 	W_tag     bool
+	W_stat    bool
 }
 
 func (arg *Arguments) ValidCheck() bool {

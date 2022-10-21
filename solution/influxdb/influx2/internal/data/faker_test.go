@@ -24,6 +24,7 @@ func TestNewResourceValue(t *testing.T) {
 
 	fmt.Println("make field data: ", len(fvs))
 }
+
 func TestNewResourceTagValue(t *testing.T) {
 	fvs := NewResourceTagValue()
 	for _, fv := range fvs {
@@ -32,4 +33,11 @@ func TestNewResourceTagValue(t *testing.T) {
 	}
 
 	fmt.Println("make field data: ", len(fvs))
+}
+
+func TestReqRespValue(t *testing.T) {
+	fvs := NewReqRespValue()
+	for _, fv := range fvs {
+		fmt.Println(fv)
+	}
 }

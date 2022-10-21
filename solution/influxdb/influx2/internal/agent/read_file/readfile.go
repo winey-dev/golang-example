@@ -70,6 +70,7 @@ func ReadFromFile(path string) ([]string, error) {
 
 	var str string
 	var queryLine []string
+	var anno bool
 	for {
 		buf, _, err := reader.ReadLine()
 		if err == io.EOF {
@@ -88,6 +89,18 @@ func ReadFromFile(path string) ([]string, error) {
 
 		r := []rune(temp)
 		if r[0] == '#' {
+			continue
+		}
+
+		if anno {
+			if temp != "*/" {
+				continue
+			}
+			anno = false
+		}
+
+		if temp == "/*" {
+			anno = true
 			continue
 		}
 

@@ -16,6 +16,7 @@ const usage = `Usage of influx2-write
 -w, --write                  write mode 
     --itemname-field
     --itemname-tag
+    --stat
 -h, --help                   prints help informations
 `
 
@@ -34,6 +35,7 @@ func main() {
 	flag.StringVar(&arg.ReadFile, "f", "", "read query file ")
 	flag.BoolVar(&arg.W_field, "itemname-field", false, "item name set field")
 	flag.BoolVar(&arg.W_tag, "itemname-tag", false, "item name set tag")
+	flag.BoolVar(&arg.W_stat, "stat", false, "stat struct write point")
 	flag.Usage = func() { fmt.Print(usage) }
 
 	flag.Parse()

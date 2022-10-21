@@ -1,14 +1,16 @@
-# from(bucket: "sample")
-#  |> range(start: -1m)
-#  |> filter(fn: (r) => r["_measurement"] == "resource-stat-field-item")
-#  |> filter(fn: (r) => r["_field"] == "disk-use-by-bytes")
-#  |> filter(fn: (r) => r["nf_name"] == "mss-ems")
-#  |> aggregateWindow( every: 10s, fn: sum)
-#  |> drop(columns: ["_start","_stop","app_name","pod_name","container_name"])
-#  |> group(columns: ["node_name"])
-#  |> sum()
-#  |> group()
-#---
+/*
+from(bucket: "sample")
+  |> range(start: -1m)
+  |> filter(fn: (r) => r["_measurement"] == "resource-stat-field-item")
+  |> filter(fn: (r) => r["_field"] == "disk-use-by-bytes")
+  |> filter(fn: (r) => r["nf_name"] == "mss-ems")
+  |> aggregateWindow( every: 10s, fn: sum)
+  |> drop(columns: ["_start","_stop","app_name","pod_name","container_name"])
+  |> group(columns: ["node_name"])
+  |> sum()
+  |> group()
+*/
+---
 from(bucket: "sample")
   |> range(start: -1m)
   |> filter(fn: (r) => r["_measurement"] == "resource")

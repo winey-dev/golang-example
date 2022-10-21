@@ -17,8 +17,8 @@ type writeAgent struct {
 
 func (wa *writeAgent) Run(client influxdb2.Client) error {
 	fmt.Println("Welcome Write Field Item ...")
-	WriteAPI := client.WriteAPI(wa.cfg.OrgName, wa.cfg.Bucket)
 
+	WriteAPI := client.WriteAPI(wa.cfg.OrgName, wa.cfg.Bucket)
 	errorsChan := WriteAPI.Errors()
 	go func() {
 		for err := range errorsChan {
@@ -30,13 +30,14 @@ func (wa *writeAgent) Run(client influxdb2.Client) error {
 	locations := data.NewLocation()
 
 	timer := time.NewTicker(time.Second * 10)
-
 	i := 0
 	for {
 		select {
 		case <-timer.C:
 			startTime := time.Now()
+			// Insert ReqResp
 			for _, l := range locations {
+				// Insert Resource
 				tags := map[string]string{
 					"node_name":      l.NodeName,
 					"namespace":      l.Namespace,
@@ -56,15 +57,13 @@ func (wa *writeAgent) Run(client influxdb2.Client) error {
 					fields,
 					time.Now(),
 				)
-
 				WriteAPI.WritePoint(p)
 			}
-
-			WriteAPI.Flush()
 			// Flush
+			WriteAPI.Flush()
 			endTime := time.Since(startTime)
 			elapsedTime := float64(endTime.Milliseconds()) / float64(1000)
-			fmt.Printf("[%d] insert position count:%d, elapsed:%0.3fms\n", i, len(locations)*len(fieldValues), elapsedTime)
+			fmt.Printf("[%d] insert resource position count:%d, elapsed:%0.3fms\n", i, len(locations)*len(fieldValues), elapsedTime)
 		}
 		i++
 	}
