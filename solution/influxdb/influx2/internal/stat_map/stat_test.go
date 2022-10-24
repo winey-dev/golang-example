@@ -30,7 +30,5 @@ func TestMakeStat(t *testing.T) {
 	statInfo.FakeData()
 
 	data, _ := json.Marshal(statInfo)
-
 	fmt.Println(string(data))
-
 }
