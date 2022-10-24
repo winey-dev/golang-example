@@ -34,6 +34,7 @@ func (wa *writeAgent) Run(client influxdb2.Client) error {
 			for _, stat := range allStat {
 				stat.FakeData()
 				points = append(points, stat.NewPoint()...)
+				stat.Clear()
 			}
 
 			err := WriteAPI.WritePoint(context.TODO(), points...)
