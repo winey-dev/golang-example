@@ -23,11 +23,11 @@ type (
 	}
 )
 
-func LoadConfig(location string) *Config {
+func LoadConfig() *Config {
 	cfg := new(Config)
 	cfg.v = viper.New()
 
-	cfg.v.SetConfigName(fmt.Sprintf("setting.%s", location))
+	cfg.v.SetConfigName(fmt.Sprintf("setting"))
 	cfg.v.AddConfigPath("../config")
 	cfg.v.SetConfigType("yaml")
 

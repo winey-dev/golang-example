@@ -10,7 +10,6 @@ import (
 )
 
 const usage = `Usage of influx2-write
--l, --location <location>    location informations
 --file                       read query from file
 --query                      read stdin from query
 -w, --write                  write mode 
@@ -23,8 +22,6 @@ const usage = `Usage of influx2-write
 func main() {
 	var arg argument.Arguments
 
-	flag.StringVar(&arg.Loc, "location", "smlee", "location informations")
-	flag.StringVar(&arg.Loc, "l", "smlee", "location informations")
 	flag.BoolVar(&arg.Write, "write", false, "main start write mode")
 	flag.BoolVar(&arg.Write, "w", false, "main start write mode")
 	flag.BoolVar(&arg.Read, "read", false, "main start write mode")
@@ -46,9 +43,7 @@ func main() {
 
 	fmt.Printf("%+v\n", arg)
 
-	fmt.Printf("default influxdb location=%s\n", arg.Loc)
-
-	cfg := config.LoadConfig(arg.Loc)
+	cfg := config.LoadConfig()
 
 	appService := app.NewApp(agent.NewAgentService(arg, cfg.InfluxDB))
 	err := appService.Start(cfg, arg)

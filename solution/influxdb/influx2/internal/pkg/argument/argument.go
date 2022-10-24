@@ -1,7 +1,6 @@
 package argument
 
 type Arguments struct {
-	Loc       string
 	Read      bool
 	ReadQuery bool
 	ReadFile  string

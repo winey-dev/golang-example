@@ -1,5 +1,5 @@
 influxdb:
-  endpoint: "http://10.10.9.92:31009" # anna  smlee
+  endpoint: "http://10.10.9.92:31009" # smlee
   username: "admin"
   password: "admin1234"
   orgname: "influxdata"
