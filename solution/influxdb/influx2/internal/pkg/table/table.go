@@ -58,10 +58,8 @@ func Store(result *api.QueryTableResult) []*Table {
 			}
 			table = NewTable(result.TablePosition())
 			for _, col := range result.TableMetadata().Columns() {
-				if ok := IsIgnoreField(col.Name()); !ok {
-					table.ColumnsName = append(table.ColumnsName, col.Name())
-					table.MaxValueLen = append(table.MaxValueLen, len(col.Name())+tap)
-				}
+				table.ColumnsName = append(table.ColumnsName, col.Name())
+				table.MaxValueLen = append(table.MaxValueLen, len(col.Name())+tap)
 			}
 		}
 
@@ -109,13 +107,4 @@ func GetValueLen(arg interface{}) (int, string) {
 
 	f := fmt.Sprintf("%+v", arg)
 	return len(f), f
-}
-
-func IsIgnoreField(name string) bool {
-	/*
-		if name == "table" || name == "_start" || name == "_stop" || name == "result" {
-			return true
-		}
-	*/
-	return false
 }
