@@ -6,14 +6,18 @@ require (
 	github.com/go-faker/faker/v4 v4.0.0-beta.3
 	github.com/influxdata/influxdb-client-go/v2 v2.11.0
 	github.com/spf13/viper v1.13.0
+	github.com/yiaw/yiaw-go v0.0.1-beta
 )
 
 require (
 	github.com/deepmap/oapi-codegen v1.8.2 // indirect
+	github.com/fatih/color v1.13.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/influxdata/line-protocol v0.0.0-20200327222509-2487e7298839 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
+	github.com/mattn/go-colorable v0.1.12 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
