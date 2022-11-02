@@ -2,7 +2,6 @@ package write_stat
 
 import (
 	"context"
-	"fmt"
 	"influx2/config"
 	"influx2/internal/app"
 	"influx2/internal/stat_map"
@@ -10,6 +9,7 @@ import (
 
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	"github.com/influxdata/influxdb-client-go/v2/api/write"
+	"github.com/yiaw/yiaw-go/log"
 )
 
 type writeAgent struct {
@@ -17,7 +17,7 @@ type writeAgent struct {
 }
 
 func (wa *writeAgent) Run(client influxdb2.Client) error {
-	fmt.Println("Welcome Write Stat Item ...")
+	log.INF("Welcome Write Stat Item ...\n")
 
 	WriteAPI := client.WriteAPIBlocking(wa.cfg.OrgName, wa.cfg.Bucket)
 
@@ -39,12 +39,12 @@ func (wa *writeAgent) Run(client influxdb2.Client) error {
 
 			err := WriteAPI.WritePoint(context.TODO(), points...)
 			if err != nil {
-				fmt.Printf("insert stat failed. err=%v\n", err)
+				log.ERR("insert stat failed. err=%v\n", err)
 			}
 
 			endTime := time.Since(startTime)
 			elapsedTime := float64(endTime.Milliseconds()) / float64(1000)
-			fmt.Printf("[%d] points count:%d, elapsed:%0.3fms\n", i, len(points), elapsedTime)
+			log.INF("[%d] points count:%d, elapsed:%0.3fms\n", i, len(points), elapsedTime)
 		}
 		i++
 	}

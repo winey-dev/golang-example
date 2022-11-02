@@ -7,6 +7,8 @@ import (
 	"influx2/internal/agent"
 	"influx2/internal/app"
 	"influx2/internal/pkg/argument"
+
+	"github.com/yiaw/yiaw-go/log"
 )
 
 const usage = `Usage of influx2-write
@@ -41,13 +43,16 @@ func main() {
 		flag.Usage()
 	}
 
-	fmt.Printf("%+v\n", arg)
+	l := log.NewLog()
+	log.SetGlobalLog(l)
+
+	log.SVC("%+v\n", arg)
 
 	cfg := config.LoadConfig()
 
 	appService := app.NewApp(agent.NewAgentService(arg, cfg.InfluxDB))
 	err := appService.Start(cfg, arg)
 	if err != nil {
-		fmt.Printf("app start failed. err=%v\n", err)
+		log.ERR("app start failed. err=%v\n", err)
 	}
 }
